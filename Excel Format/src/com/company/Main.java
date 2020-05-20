@@ -22,23 +22,41 @@ public class Main {
         for (int i = 0; i <= 3; i++) {
 
             XSSFCell celda = fila.getCell(i);
-            System.out.println("Valor en la posicion i " + i + " = " + celda);
+           // System.out.println("Valor en la posicion i " + i + " = " + celda);
             if (celda == null) {
                 Datos[i] = ("Carrarter no reconocible");
             } else {
                 Datos[i] = celda.getStringCellValue();
             }
         }
+        System.out.println("Los datos del profesor son: ");
+
         for (int i = 0; i < Datos.length; i++) {
-            System.out.println("Cuando i == "+i+" Datos == "+Datos[i]);
+            switch (i){
+                case 0:
+                    System.out.print("Nombre: ");
+                    System.out.println(Datos[i]);
+                    break;
+                case 1:
+                    System.out.print("Correo: ");
+                    System.out.println(Datos[i]);
+                    break;
+                case 2:
+                    System.out.print("Carrera: ");
+                    System.out.println(Datos[i]);
+                    break;
+                case 3:
+                    System.out.print("Tipo de horario: ");
+                    System.out.println(Datos[i]);
+                    break;
+            }
         }
 
         for (int i = 0; i <= hoja.getLastRowNum(); i++) {
             fila = hoja.getRow(i);
-System.out.println(i);
             for (int j = 4; j < fila.getLastCellNum(); j++) {
                 XSSFCell celda = fila.getCell(j);
-                System.out.println("i= "+i+"j = "+(j-4)+celda);
+                //System.out.println("i= "+i+"j = "+(j-4)+celda);
                 if (celda == null) {
                     Horario[i][j-4] = ("Carrarter no reconocible");
                 } else {
