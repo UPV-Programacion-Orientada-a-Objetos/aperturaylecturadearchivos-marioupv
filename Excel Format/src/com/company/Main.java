@@ -10,38 +10,51 @@ public class Main {
 
     public static  void main(String[] args) throws Exception {
         //String titulo;
-        String  [] Datos = new String[10];
+        String[] Datos = new String[4];
+        String[][] Horario = new String[15][10];
+
         System.out.println("Hola mundo jeje");
         FileInputStream file = new FileInputStream("LibroP.xlsx");
         XSSFWorkbook wb = new XSSFWorkbook(file);
         XSSFSheet hoja = wb.getSheetAt(0);
         System.out.println(hoja.getLastRowNum());
         XSSFRow fila = hoja.getRow(1);
-       for ( int i = 0 ; i <= hoja.getLastRowNum() ; i ++ ) {
+        for (int i = 0; i <= 3; i++) {
 
-           XSSFCell celda = fila.getCell(i);
-           System.out.println("Valor en la posicion i "+i+" = "+celda);
-           int c ;
-           /*for (c = 0; c < fila.getLastCellNum(); c++) {
-               Datos[c] = celda.getStringCellValue();
-
-           }*/
-       }
-           // System.out.println("Valor en la posicion i "+i+" = "+celda);
-           // System.out.println("Valor en la posicion "+c+" = "+Datos[c]);
-          /*  if(celda==null){
-
-                Datos[i]=("Carrarter no reconocible");
-            }else {
+            XSSFCell celda = fila.getCell(i);
+            System.out.println("Valor en la posicion i " + i + " = " + celda);
+            if (celda == null) {
+                Datos[i] = ("Carrarter no reconocible");
+            } else {
                 Datos[i] = celda.getStringCellValue();
-            }*/
-        //}
-        for (int c=0; c<Datos.length;c++){
-            System.out.println("Valor en la posicion c"+c+" = "+Datos[c]);
+            }
+        }
+        for (int i = 0; i < Datos.length; i++) {
+            System.out.println("Cuando i == "+i+" Datos == "+Datos[i]);
         }
 
-    }
+        for (int i = 0; i <= hoja.getLastRowNum(); i++) {
+            fila = hoja.getRow(i);
+System.out.println(i);
+            for (int j = 4; j < fila.getLastCellNum(); j++) {
+                XSSFCell celda = fila.getCell(j);
+                System.out.println("i= "+i+"j = "+(j-4)+celda);
+                if (celda == null) {
+                    Horario[i][j-4] = ("Carrarter no reconocible");
+                } else {
+                    Horario[i][j] = celda.getStringCellValue();
+                }
+            }
+        }
 
+
+        for (int i = 0; i < 15; i++) {
+            for (int j = 4; j < 10; j++) {
+                System.out.print(Horario[i][j]+"    ");
+            }
+            System.out.println();
+        }
+    }
 
 }
 
